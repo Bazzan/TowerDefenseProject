@@ -3,10 +3,10 @@
 public class Bullet : MonoBehaviour {
 
     private Transform target;
-    public GameObject impactEffect;
-    public float explosionRadius = 0f;
-    public float bulletSpeed = 70f;
-    public int damage = 50;
+    [SerializeField] private GameObject impactEffect;
+    [SerializeField] private float explosionRadius = 0f;
+    [SerializeField] private float bulletSpeed = 70f;
+    [SerializeField] private int damage = 50;
 
 
     public void Seek(Transform _target)

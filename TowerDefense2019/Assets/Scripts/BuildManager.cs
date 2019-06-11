@@ -2,40 +2,40 @@
 
 public class BuildManager : MonoBehaviour {
 
-    public static BuildManager instance;
+    public static BuildManager Instance;
     Node node;
 
-    public GameObject buildEffect;
+    [SerializeField] private GameObject buildEffect;
     //public GameObject buildFeedBack;
 
     private TurretBluePrint turretToBuild;
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Debug.Log("more than one buildmanager in scene");
             return;
         }
-        instance = this;
+        Instance = this;
 
     }
 
     public bool CanBuild { get { return turretToBuild != null; } }
-    public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
+    public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.Cost; } }
 
   
     public void BuildTurretOn(Node node)
     {
-        if (PlayerStats.Money < turretToBuild.cost)
+        if (PlayerStats.Money < turretToBuild.Cost)
         {
             Debug.Log("Check wallet you bum!");
             return;
         }
-        PlayerStats.Money -= turretToBuild.cost;
+        PlayerStats.Money -= turretToBuild.Cost;
 
-        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
-        node.turret = turret;
+        GameObject turret = (GameObject)Instantiate(turretToBuild.Prefab, node.GetBuildPosition(), Quaternion.identity);
+        node.Turret = turret;
 
         GameObject effect = (GameObject)Instantiate(buildEffect, node.GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);

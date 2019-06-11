@@ -3,25 +3,26 @@ using UnityEngine;
 
 public class Node : MonoBehaviour {
     BuildManager buildManager;
-    public Color notEnoughMoney;
-    public Color hoverColor;
+    [SerializeField] private Color notEnoughMoney;
+    [SerializeField] private Color hoverColor;
 
     //public Material buildTrue;
     //public Material buildFalse;
     //public GameObject BuildFeedBack;
 
     
-    public Vector3 positionOffSett;
+    [SerializeField] private Vector3 positionOffSett;
 
     [Header ("Optional")]
-    public GameObject turret;
+    public GameObject Turret;
 
     private Renderer rend;
     private Color startColor;
     //private GameObject buildFeedback;
+
     void Start()
     {
-        buildManager = BuildManager.instance;
+        buildManager = BuildManager.Instance;
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
         //buildFeedback = buildManager.buildFeedBack;
@@ -49,7 +50,7 @@ public class Node : MonoBehaviour {
         }
 
 
-        if (turret != null)
+        if (Turret != null)
         {
             Debug.Log("Already a turret there");
             return;

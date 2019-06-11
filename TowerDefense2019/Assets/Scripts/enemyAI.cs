@@ -7,24 +7,24 @@ using UnityEngine.AI;
 public class enemyAI : MonoBehaviour {
 
     [Header("Attributes")]
-    public float speed = 10f;
+    [SerializeField] private float speed = 10f;
     //private int wavePointIndex = 0;
-    public int health = 100;
-    public int value = 50;
-    public int dmgCastel;
+    [SerializeField] private int health = 100;
+    [SerializeField] private int value = 50;
+    [SerializeField] private int dmgCastel;
 
-    [Header("Stuff")]
-    public GameObject deathEffect;
+    [Header("Other")]
+    [SerializeField] private GameObject deathEffect;
     
 
     [Header("NavMesh")]
 
 
-    public NavMeshAgent agent;
-    public Transform endDestination;
-    public bool agentHasPath = false;
+    public NavMeshAgent Agent;
+    public Transform EndDestination;
+    public bool AgentHasPath = false;
 
-    public Transform start;
+    [SerializeField] private Transform start;
 
     private float dist;
     private navMeshManager navManager;
@@ -36,7 +36,7 @@ public class enemyAI : MonoBehaviour {
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
         linerend = GetComponent<LineRenderer>();
         
@@ -46,21 +46,21 @@ public class enemyAI : MonoBehaviour {
         
 
 
-        if (agent == null)
+        if (Agent == null)
         {
             Debug.Log("lägg till enemys navMeshAgent i" + gameObject.name);
         }else
         {
-            Debug.Log("agent on mesh: " + agent.isOnNavMesh + " agent is activeAndEnabled: " + agent.isActiveAndEnabled);
-            NavMesh.CalculatePath(agent.transform.position, endDestination.position, NavMesh.AllAreas, path);
+            Debug.Log("agent on mesh: " + Agent.isOnNavMesh + " agent is activeAndEnabled: " + Agent.isActiveAndEnabled);
+            NavMesh.CalculatePath(Agent.transform.position, EndDestination.position, NavMesh.AllAreas, path);
             Debug.Log(path.status);
-            agent.SetPath(path);
-            Debug.Log(agent.hasPath);
-            if (agent.hasPath)
+            Agent.SetPath(path);
+            Debug.Log(Agent.hasPath);
+            if (Agent.hasPath)
             {
-                agentHasPath = true;
+                AgentHasPath = true;
             }
-            Debug.Log("agent path Corners" + agent.path.corners);
+            Debug.Log("agent path Corners" + Agent.path.corners);
 
         }
 
@@ -78,8 +78,8 @@ public class enemyAI : MonoBehaviour {
         //}
         //agent.SetPath(enemyPath);
 
-        linerend.positionCount = agent.path.corners.Length;
-        linerend.SetPositions(agent.path.corners);
+        linerend.positionCount = Agent.path.corners.Length;
+        linerend.SetPositions(Agent.path.corners);
         linerend.enabled = true;
 
     }
@@ -87,10 +87,10 @@ public class enemyAI : MonoBehaviour {
 
     private void SetDestination()
     {
-        if(endDestination != null)
+        if(EndDestination != null)
         {
-            Vector3 endVector = endDestination.transform.position;
-            agent.SetDestination(endVector);
+            Vector3 endVector = EndDestination.transform.position;
+            Agent.SetDestination(endVector);
         }
     }
 

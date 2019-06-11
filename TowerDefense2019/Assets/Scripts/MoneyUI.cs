@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MoneyUI : MonoBehaviour {
 
-    public Text moneyText;
+    [SerializeField] private Text moneyText;
 	
 	// Update is called once per frame
 	void Update ()

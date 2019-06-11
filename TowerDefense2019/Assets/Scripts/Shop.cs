@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour {
 
-    public TurretBluePrint ArrowTower;
-    public TurretBluePrint missileLauncher;
-    public TurretBluePrint magicLaserB;
+    [SerializeField] private TurretBluePrint arrowTower;
+    [SerializeField] private TurretBluePrint missileLauncher;
+    [SerializeField] private TurretBluePrint magicLaserB;
 
-    BuildManager buildmanager;
+    private BuildManager buildmanager;
 
 
     private void Start()
     {
-        buildmanager = BuildManager.instance;
+        buildmanager = BuildManager.Instance;
     }
 
 
     public void SelectStandarTurret()
     {
         Debug.Log("Standard turret Selected");
-        buildmanager.SelectTurretToBuild(ArrowTower);
+        buildmanager.SelectTurretToBuild(arrowTower);
 
     }
 

@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class waveSpawner : MonoBehaviour {
 
-    public Transform enemyPrefab;
-    public Transform spawnPoint;
-    public float timeBetweenWaves = 5f;
-    public Text waveCountdownTimer;
+    [SerializeField] private Transform enemyPrefab;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float timeBetweenWaves = 5f;
+    [SerializeField] private Text waveCountdownTimer;
 
     private int waveIndex = 0;
     private float countDown = 2f;

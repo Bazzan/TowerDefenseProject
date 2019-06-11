@@ -4,11 +4,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     private bool doMovment = true;
 
-    public float panSpeed = 30f;
-    public float panBorderThickness = 10f;
-    public float scrollSpeed = 5f;
-    public float minY = 10f;
-    public float maxY = 80f;
+    [SerializeField] private float panSpeed = 30f;
+    [SerializeField] private float panBorderThickness = 10f;
+    [SerializeField] private float scrollSpeed = 5f;
+    [SerializeField] private float minY = 10f;
+    [SerializeField] private float maxY = 80f;
 
 
     void Update () {

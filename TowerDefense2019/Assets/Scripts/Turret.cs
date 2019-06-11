@@ -6,26 +6,26 @@ public class Turret : MonoBehaviour {
     private Transform target;
 
     [Header("General")]
-    public float range = 15f;
+    [SerializeField] private float range = 15f;
 
 
     [Header("Use Bullets (default)")]
-    public float fireRate = 1f;
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private GameObject bulletPrefab;
     private float fireCountdown = 0f;
-    public GameObject bulletPrefab;
 
     [Header("Use Laser")] //brackeys linerenderer i snakevideo
-    public bool useLaser = false;
-    public LineRenderer lineRenderer;
+    [SerializeField] private bool useLaser = false;
+    [SerializeField] private LineRenderer lineRenderer;
 
     [Header("Setup fields")]
-    public bool hasRotatingPart = false;
-    public float turnSpeed = 10f;
-    public Transform partToRotate;
+    [SerializeField] private bool hasRotatingPart = false;
+    [SerializeField] private float turnSpeed = 10f;
+    [SerializeField] private Transform partToRotate;
 
-    public string enemyTag = "Enemy";
+    [SerializeField] private string enemyTag = "Enemy";
  
-    public Transform firePoint;
+    [SerializeField] private Transform firePoint;
 
     void Start ()
     {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LivesUI : MonoBehaviour {
 
-    public Text livesText;
+    [SerializeField] private Text livesText;
 	
 	// Update is called once per frame
 	void Update ()
