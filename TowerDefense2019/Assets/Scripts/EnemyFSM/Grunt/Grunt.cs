@@ -4,25 +4,20 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Grunt : EnemyStateMachine
 {
+    public bool HasSpawned = false;
 
 
-    [Header("Attributes")]
-    [SerializeField] public float speed = 10f;
-    [SerializeField] public int health = 100;
-    [SerializeField] public int value = 50;
-    [SerializeField] public int dmgCastel;
 
     
     [Header("NavMesh")]
     [SerializeField] public NavMeshAgent Agent;
     [SerializeField] public Transform start;
     [SerializeField] public Transform EndDestination;
-    [SerializeField] public bool AgentHasPath = false;
+    //[SerializeField] public bool AgentHasPath = false;
     //[SerializeField] public NavMeshPath path;
 
 
-    [Header("VFX")]
-    [SerializeField] public GameObject deathEffect;
+
 
 
     [Header("Other")]
@@ -40,7 +35,6 @@ public class Grunt : EnemyStateMachine
         Debug.Log("Grunt.cs " + currentState.ToString());
 
     }
-
 
     
 }

@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour {
 
 
         Destroy(gameObject);
-        Debug.Log("WE GOT A HITT BABY!");
+        //Debug.Log("WE GOT A HITT BABY!");
     }
 
     void Explode()
@@ -76,10 +76,10 @@ public class Bullet : MonoBehaviour {
 
     void Damage(Transform Enemy)
     {
-        enemyAI e = Enemy.GetComponent<enemyAI>();
+        EnemyAttributes e = Enemy.GetComponent<EnemyAttributes>();
         if (e != null)
         {
-            e.TakeDamage(damage);
+            e.EnemyTakeDamage(damage);
         }
     }
 

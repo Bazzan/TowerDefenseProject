@@ -846,7 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4853921560581466, guid: b6126d24607562f47a6ec7ab25c382b8, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6126d24607562f47a6ec7ab25c382b8, type: 3}
@@ -7508,7 +7508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4509878021810644, guid: f07c3595417be2e408e98ca1958a05b3, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f07c3595417be2e408e98ca1958a05b3, type: 3}
@@ -7571,7 +7571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10dd4c68f755fa84998e070fa4b6a821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4972048934652550, guid: a6cdb6aed6465874a940ca6af89d7248,
+  enemyPrefab: {fileID: 4972048934652550, guid: 66711ba0baa93c34889997874674baa9,
     type: 3}
   spawnPoint: {fileID: 557355751}
   timeBetweenWaves: 10

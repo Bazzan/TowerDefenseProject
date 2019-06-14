@@ -11,6 +11,7 @@ public class endPath : MonoBehaviour {
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("endPath");
+            other.GetComponent<EnemyAttributes>().DmgCastel();
         }
     }
 }

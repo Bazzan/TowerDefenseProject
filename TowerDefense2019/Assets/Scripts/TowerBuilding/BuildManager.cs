@@ -29,7 +29,7 @@ public class BuildManager : MonoBehaviour {
     {
         if (PlayerStats.Money < turretToBuild.Cost)
         {
-            Debug.Log("Check wallet you bum!");
+            //Debug.Log("Check wallet you bum!");
             return;
         }
         PlayerStats.Money -= turretToBuild.Cost;
@@ -40,7 +40,7 @@ public class BuildManager : MonoBehaviour {
         GameObject effect = (GameObject)Instantiate(buildEffect, node.GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 5f);
 
-        Debug.Log("Turret build! Denero left:" + PlayerStats.Money);
+        //Debug.Log("Turret build! Denero left:" + PlayerStats.Money);
         turretToBuild = null;
     }
 
