@@ -12,6 +12,7 @@ public class endPath : MonoBehaviour {
         {
             Debug.Log("endPath");
             other.GetComponent<EnemyAttributes>().DmgCastel();
+
         }
     }
 }

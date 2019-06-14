@@ -8,7 +8,7 @@ public class GruntMoveState : GruntBaseState
 {
     public override void Enter()
     {
-        Debug.Log("GruntMoveState.cs -> enter");
+        //Debug.Log("GruntMoveState.cs -> enter");
 
     }
 

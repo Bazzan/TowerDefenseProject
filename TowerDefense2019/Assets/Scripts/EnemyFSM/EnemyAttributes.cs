@@ -12,11 +12,19 @@ public class EnemyAttributes : MonoBehaviour
     [Header("VFX")]
     [SerializeField] public GameObject deathEffect;
 
+    ObjectPool objectPool;
+
+    private void Start()
+    {
+        objectPool = GetComponent<ObjectPool>();
+    }
+
 
     public void DmgCastel()
     {
         PlayerStats.Lives--;
-        Destroy(gameObject);
+
+        objectPool.EnQueueInPool("Grunt", transform.gameObject);
     }
 
     public void EnemyTakeDamage(float damage)
@@ -33,8 +41,9 @@ public class EnemyAttributes : MonoBehaviour
     {
         PlayerStats.Money += value;
 
-        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        objectPool.EnQueueInPool("Grunt", gameObject);
     }
 }

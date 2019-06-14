@@ -10,9 +10,9 @@ public class GruntSpawnState : GruntBaseState
 
     public override void Enter()
     {
-        Debug.Log("SpawnState.cs -> enter");
+        //Debug.Log("SpawnState.cs -> enter");
         Owner.Agent.SetDestination(Owner.EndDestination.position);
-        Debug.Log(Owner.Agent.pathStatus );
+        //Debug.Log(Owner.Agent.pathStatus );
         
 
     }
@@ -28,6 +28,9 @@ public class GruntSpawnState : GruntBaseState
         {
             Owner.HasSpawned = true;
             Owner.Transition<GruntPartialPathState>();
+        }else if( Owner.Agent.pathStatus == NavMeshPathStatus.PathInvalid)
+        {
+            Enter();
         }
 
     }

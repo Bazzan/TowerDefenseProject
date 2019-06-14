@@ -7484,7 +7484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4509878021810644, guid: f07c3595417be2e408e98ca1958a05b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 4509878021810644, guid: f07c3595417be2e408e98ca1958a05b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7524,6 +7524,7 @@ GameObject:
   - component: {fileID: 1563037396}
   - component: {fileID: 1563037395}
   - component: {fileID: 1563037394}
+  - component: {fileID: 1563037393}
   m_Layer: 0
   m_Name: GameManager (1)
   m_TagString: Untagged
@@ -7531,6 +7532,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1563037393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563037392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cfb3aafbffc0d64b95f31d824b93d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pools:
+  - PoolPrefab: {fileID: 1032917255435194, guid: 66711ba0baa93c34889997874674baa9,
+      type: 3}
+    PoolTag: Grunt
+    PoolSize: 100
 --- !u!114 &1563037394
 MonoBehaviour:
   m_ObjectHideFlags: 0
