@@ -21,7 +21,15 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if(Instance != null)
+        {
+            return;
+        }
+        else
+        {
+            Instance = this;
+        }
+       
     }
     #endregion
 
@@ -79,12 +87,12 @@ public class ObjectPool : MonoBehaviour
             Debug.Log("ObjectPool dose not have the Pooltag in the dictionary ->" + poolTag);
             return;
         }
-        Debug.Log("Pooled ->" + poolTag);
+        //Debug.Log("Pooled ->" + poolTag);
 
         PoolDictionary[poolTag].Enqueue(poolThis);
         poolThis.SetActive(false);
 
-        Debug.Log("Pooled ->" + poolTag);
+
 
     }
 

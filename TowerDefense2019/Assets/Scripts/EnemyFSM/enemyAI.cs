@@ -27,7 +27,7 @@ public class enemyAI : MonoBehaviour {
     [SerializeField] private Transform start;
 
     private float dist;
-    private navMeshManager navManager;
+    private NavMeshManager navManager;
     private LineRenderer linerend;
     private NavMeshPath path;
 

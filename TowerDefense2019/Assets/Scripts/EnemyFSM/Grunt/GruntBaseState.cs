@@ -6,7 +6,7 @@ public class GruntBaseState : EnemyState
 {
 
 
-
+    protected NavMeshManager navMeshManager;
     protected Grunt Owner;
 
 

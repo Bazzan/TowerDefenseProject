@@ -24,7 +24,9 @@ public class EnemyAttributes : MonoBehaviour
     {
         PlayerStats.Lives--;
 
-        objectPool.EnQueueInPool("Grunt", transform.gameObject);
+        ObjectPool.Instance.EnQueueInPool("Grunt", gameObject);
+        //Debug.Log("DMGCastel.cs ");
+        //objectPool.EnQueueInPool("Grunt", gameObject);
     }
 
     public void EnemyTakeDamage(float damage)

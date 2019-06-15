@@ -3,92 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class navMeshManager : MonoBehaviour {
+public class NavMeshManager : MonoBehaviour {
 
-    public NavMeshAgent agent;
-    public NavMeshPath path1 , path2 ;
+    private NavMeshAgent agent;
+    public NavMeshPath path ;
 
-    public GameObject castle;
-    public GameObject start;
+    public Transform castle;
+    //public GameObject start;
 
 
     private LineRenderer linerend;
     private Vector3 spawn;
 
-    private NavMeshPath navMeshPath;
-    private enemyAI enemyAi;
+    public static NavMeshManager navMeshManagerInstance;
 
-    private GameObject[] enemyList;
-    //ArrayList enemyList = new ArrayList();
-    
     private void Awake()
     {
-        path1 = new NavMeshPath();
-        enemyAi = GetComponent<enemyAI>();
-        spawn = start.transform.position;
-        linerend = GetComponent<LineRenderer>();
-        calcPath();
+        if(navMeshManagerInstance != null)
+        {
+            return;
+        }
+        else
+        {
+            navMeshManagerInstance = this;
+        }
+        agent = GetComponent<NavMeshAgent>();
 
-        Debug.Log("done" + agent.remainingDistance + agent.hasPath + agent.pathPending);
+        CalcPath();
+
+        path = new NavMeshPath();
     }
+
 
     private void Update()
     {
 
-        // kansek en colliader som känner av om det är en enemy i start och ger den path på det sättet?
- 
-
-        
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            agent.transform.SetPositionAndRotation(spawn, Quaternion.identity);
-        }
-        //linerend.positionCount = agent.path.corners.Length;
-        //linerend.SetPositions(agent.path.corners);
-
-        linerend.positionCount = path1.corners.Length;
-        linerend.SetPositions(path1.corners);
+        linerend.positionCount = path.corners.Length;
+        linerend.SetPositions(path.corners);
         linerend.enabled = true;
-
     }
 
-    public void calcPath()
+    
+
+    public void CalcPath()
     {
-        Debug.Log("new path calced");
-        NavMesh.CalculatePath(start.gameObject.transform.position, castle.transform.position, NavMesh.AllAreas, path1);
-        Debug.Log(path1.status+ "1");
-        path2 = path1;
-        Debug.Log(path2.status + "2");
+        NavMesh.CalculatePath(transform.position, castle.position,NavMesh.AllAreas , path);
     }
 
-
-    private void OnMouseDown()
+    public NavMeshPath GetPath()
     {
-        calcPath();
-        agent.SetPath(path1);
-
-        Debug.Log("done" + agent.remainingDistance + agent.hasPath + agent.pathPending);
-
+        return path;
     }
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log("hello");
-    //    if (other.CompareTag("Enemy") && enemyAi.hasPath == false)
-    //    {
-    //        agent.SetPath(path1);
-    //        Debug.Log("start Trigger");
-    //    }
-    //}
-
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log("hello");
-        //if (other.CompareTag("Enemy") && enemyAi.hasPath == false)
-        {
-            agent.SetPath(path1);
-            Debug.Log("start Trigger");
-        }
-    }
-
 }

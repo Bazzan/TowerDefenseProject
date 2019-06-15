@@ -11,12 +11,8 @@ public class waveSpawner : MonoBehaviour {
 
     private int waveIndex = 0;
     private float countDown = 2f;
-    private ObjectPool objectPool;
 
-    private void Start()
-    {
-        objectPool = GetComponent<ObjectPool>();
-    }
+
 
     void Update ()
     {
@@ -46,6 +42,6 @@ public class waveSpawner : MonoBehaviour {
 
     void SpawnEnemy()
     {
-        objectPool.SpawnFromPool("Grunt", spawnPoint.position, spawnPoint.rotation);
+        ObjectPool.Instance.SpawnFromPool("Grunt", spawnPoint.position, spawnPoint.rotation);
     }
 }

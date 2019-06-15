@@ -11,9 +11,8 @@ public class GruntSpawnState : GruntBaseState
     public override void Enter()
     {
         //Debug.Log("SpawnState.cs -> enter");
-        Owner.Agent.SetDestination(Owner.EndDestination.position);
         //Debug.Log(Owner.Agent.pathStatus );
-        
+        Owner.Agent.SetPath(navMeshManager.GetPath());
 
     }
 
