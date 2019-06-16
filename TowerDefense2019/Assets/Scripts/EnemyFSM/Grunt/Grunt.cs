@@ -8,13 +8,12 @@ public class Grunt : EnemyStateMachine
 
 
 
-    
+
     [Header("NavMesh")]
     [SerializeField] public NavMeshAgent Agent;
     [SerializeField] public Transform start;
     [SerializeField] public Transform EndDestination;
-    //[SerializeField] public bool AgentHasPath = false;
-    //[SerializeField] public NavMeshPath path;
+
 
 
 
@@ -29,7 +28,6 @@ public class Grunt : EnemyStateMachine
     {
         Agent = GetComponent<NavMeshAgent>();
         LineRend = GetComponent<LineRenderer>();
-        //path = new NavMeshPath();
 
         base.Awake();
         Debug.Log("Grunt.cs " + currentState.ToString());

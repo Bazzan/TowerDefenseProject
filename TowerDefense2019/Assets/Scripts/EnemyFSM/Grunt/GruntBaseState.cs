@@ -6,14 +6,13 @@ public class GruntBaseState : EnemyState
 {
 
 
-    protected NavMeshManager navMeshManager;
     protected Grunt Owner;
-
 
 
     public override void Initialize(EnemyStateMachine Owner)
     {
         this.Owner = (Grunt)Owner;
+       
     }
 
 
@@ -29,6 +28,10 @@ public class GruntBaseState : EnemyState
             Owner.Transition<GruntSpawnState>();
         }
 
+        if (Owner.Agent.hasPath == false)
+        {
+            Owner.Transition<GruntSpawnState>();
+        }
         if (Owner.Agent.path.status == UnityEngine.AI.NavMeshPathStatus.PathPartial)
         {
 

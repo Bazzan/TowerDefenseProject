@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8980371397790725730}
   - component: {fileID: 195997135602505404}
   - component: {fileID: 120352887366878472}
+  - component: {fileID: 7932953303904630005}
   m_Layer: 0
   m_Name: Enemy FSM
   m_TagString: Enemy
@@ -113,6 +114,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b92905280434817449d8d57d595fa5d8, type: 2}
   - {fileID: 11400000, guid: e14710d9b70923a4daee7c94ca5d669e, type: 2}
   HasSpawned: 0
+  navMeshManagerInstance: {fileID: 856989614, guid: f07c3595417be2e408e98ca1958a05b3,
+    type: 3}
   Agent: {fileID: 195997135602505404}
   start: {fileID: 4509878021810644, guid: f07c3595417be2e408e98ca1958a05b3, type: 3}
   EndDestination: {fileID: 4853921560581466, guid: b6126d24607562f47a6ec7ab25c382b8,
@@ -252,3 +255,19 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!54 &7932953303904630005
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032917255435194}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

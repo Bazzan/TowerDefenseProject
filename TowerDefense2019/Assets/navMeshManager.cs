@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshManager : MonoBehaviour {
+
+//[RequireComponent(typeof(NavMeshAgent))]
+public class NavMeshManager : MonoBehaviour
+{
+    [SerializeField] private Transform castle;
+
 
     private NavMeshAgent agent;
-    public NavMeshPath path ;
-
-    public Transform castle;
-    //public GameObject start;
-
-
+    private static NavMeshPath path;
     private LineRenderer linerend;
     private Vector3 spawn;
 
@@ -19,21 +19,24 @@ public class NavMeshManager : MonoBehaviour {
 
     private void Awake()
     {
-        if(navMeshManagerInstance != null)
+        if (navMeshManagerInstance != null)
         {
+            Debug.Log("navmeshmanager.cs signelton not working");
             return;
         }
         else
         {
             navMeshManagerInstance = this;
         }
+
         agent = GetComponent<NavMeshAgent>();
-
-        CalcPath();
-
         path = new NavMeshPath();
+        linerend = GetComponent<LineRenderer>();
     }
-
+    private void Start()
+    {
+        CalcPath();
+    }
 
     private void Update()
     {
@@ -41,17 +44,33 @@ public class NavMeshManager : MonoBehaviour {
         linerend.positionCount = path.corners.Length;
         linerend.SetPositions(path.corners);
         linerend.enabled = true;
+        //Debug.Log(path.corners.Length);
+
+        CalcPath();
+
     }
 
-    
+
 
     public void CalcPath()
     {
-        NavMesh.CalculatePath(transform.position, castle.position,NavMesh.AllAreas , path);
+        //Debug.Log(transform.position + " " + castle.position + " " + NavMesh.AllAreas + " " + path.ToString());
+        NavMesh.CalculatePath(transform.position, castle.position, NavMesh.AllAreas, path);
+        //Debug.Log(path.corners.Length);
+
     }
 
     public NavMeshPath GetPath()
     {
-        return path;
+        if (path != null)
+        {
+            return path;
+        }
+        else
+        {
+            Debug.Log("path == null");
+            return null;
+        }
+
     }
 }
