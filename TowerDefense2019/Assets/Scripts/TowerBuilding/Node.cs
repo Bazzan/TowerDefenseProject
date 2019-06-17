@@ -57,6 +57,7 @@ public class Node : MonoBehaviour {
         }
 
         buildManager.BuildTurretOn(this);
+        NavMeshManager.navMeshManagerInstance.CalcPath();
     }
 
     void OnMouseEnter()

@@ -83,11 +83,11 @@ public class ObjectPool : MonoBehaviour
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.SetActive(true);
         Debug.Log("ObjectPool.cs -> spawnFromPool");
-        Debug.Log(WaveSpawner.EnemiesAlive.Count);
+        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
 
         WaveSpawner.EnemiesAlive.Add(objectToSpawn);
 
-        Debug.Log(WaveSpawner.EnemiesAlive.Count);
+        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
 
         return objectToSpawn;
     }
@@ -107,9 +107,9 @@ public class ObjectPool : MonoBehaviour
         PoolDictionary[poolTag].Enqueue(objectToPool);
 
 
-        Debug.Log(WaveSpawner.EnemiesAlive.Count);
+        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
         WaveSpawner.EnemiesAlive.Remove(objectToPool);
-        Debug.Log(WaveSpawner.EnemiesAlive.Count);
+        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
 
 
 

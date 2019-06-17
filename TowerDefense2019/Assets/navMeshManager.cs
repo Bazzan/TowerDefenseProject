@@ -11,7 +11,7 @@ public class NavMeshManager : MonoBehaviour
 
 
     private NavMeshAgent agent;
-    private static NavMeshPath path;
+    [SerializeField] private static NavMeshPath path;
     private LineRenderer linerend;
     private Vector3 spawn;
 
@@ -19,6 +19,12 @@ public class NavMeshManager : MonoBehaviour
 
     private void Awake()
     {
+
+
+        agent = GetComponent<NavMeshAgent>();
+        path = new NavMeshPath();
+        linerend = GetComponent<LineRenderer>();
+
         if (navMeshManagerInstance != null)
         {
             Debug.Log("navmeshmanager.cs signelton not working");
@@ -29,9 +35,7 @@ public class NavMeshManager : MonoBehaviour
             navMeshManagerInstance = this;
         }
 
-        agent = GetComponent<NavMeshAgent>();
-        path = new NavMeshPath();
-        linerend = GetComponent<LineRenderer>();
+
     }
     private void Start()
     {
@@ -44,9 +48,11 @@ public class NavMeshManager : MonoBehaviour
         linerend.positionCount = path.corners.Length;
         linerend.SetPositions(path.corners);
         linerend.enabled = true;
-        //Debug.Log(path.corners.Length);
+        Debug.Log(path.corners.Length);
 
         CalcPath();
+
+
 
     }
 
