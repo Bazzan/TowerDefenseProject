@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class waveSpawner : MonoBehaviour {
+public class WaveSpawner : MonoBehaviour
+{
+
+    public static List<GameObject> EnemiesAlive;
+
 
     [SerializeField] private Transform enemyPrefab;
     [SerializeField] private Transform spawnPoint;
@@ -12,6 +16,10 @@ public class waveSpawner : MonoBehaviour {
     private int waveIndex = 0;
     private float countDown = 2f;
 
+    private void Awake()
+    {
+        EnemiesAlive = new List<GameObject>();
+    }
 
 
     void Update ()

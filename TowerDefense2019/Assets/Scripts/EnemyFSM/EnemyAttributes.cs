@@ -14,9 +14,9 @@ public class EnemyAttributes : MonoBehaviour
 
     ObjectPool objectPool;
 
-    private void Start()
+    private void Awake()
     {
-        objectPool = GetComponent<ObjectPool>();
+        objectPool = ObjectPool.Instance;
     }
 
 
@@ -45,7 +45,8 @@ public class EnemyAttributes : MonoBehaviour
 
         GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(effect, 5f);
+        ObjectPool.Instance.EnQueueInPool("Grunt", gameObject);
+
         gameObject.SetActive(false);
-        objectPool.EnQueueInPool("Grunt", gameObject);
     }
 }

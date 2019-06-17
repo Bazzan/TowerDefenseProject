@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour {
     {
 	    if(target == null)
         {
+            
             Destroy(gameObject);
             return;
         }
@@ -69,6 +70,8 @@ public class Bullet : MonoBehaviour {
         {
             if (collider.tag == "Enemy")
             {
+                Destroy(gameObject);
+
                 Damage(collider.transform);
             }
         }
@@ -79,6 +82,8 @@ public class Bullet : MonoBehaviour {
         EnemyAttributes e = Enemy.GetComponent<EnemyAttributes>();
         if (e != null)
         {
+            Destroy(gameObject);
+
             e.EnemyTakeDamage(damage);
         }
     }

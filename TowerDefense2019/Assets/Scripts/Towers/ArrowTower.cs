@@ -53,6 +53,10 @@ public class ArrowTower : Tower
         {
             bullet.Seek(Target);
         }
+        if(Target.GetComponent<EnemyAttributes>().health <= 0)
+        {
+            Target = null;
+        }
 
 
     }

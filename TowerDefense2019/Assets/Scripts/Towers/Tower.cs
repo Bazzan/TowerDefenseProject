@@ -28,18 +28,27 @@ public class Tower : MonoBehaviour
 
     [SerializeField] protected Transform FirePoint;
 
+    private WaveSpawner waveSpawner;
+
     //   void Start ()
     //   {
     //       InvokeRepeating("UpdateTarget", 0f, 0.5f);
     //}
 
+    private void Awake()
+    {
+        waveSpawner = GetComponent<WaveSpawner>();
+    }
+
     protected void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
+        //GameObject[] enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
+
+
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemy in WaveSpawner.EnemiesAlive)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance)

@@ -42,6 +42,11 @@ public class BuildManager : MonoBehaviour {
 
         //Debug.Log("Turret build! Denero left:" + PlayerStats.Money);
         turretToBuild = null;
+
+
+        //FireEvent?
+
+
     }
 
     public void SelectTurretToBuild (TurretBluePrint turret)

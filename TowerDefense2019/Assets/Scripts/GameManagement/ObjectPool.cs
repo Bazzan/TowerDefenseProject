@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+
+
     
     [System.Serializable]
     public class Pool
@@ -13,11 +15,15 @@ public class ObjectPool : MonoBehaviour
         public int PoolSize;
     }
 
+    [SerializeField] private Transform poolLocation;
+
     public Dictionary<string, Queue<GameObject>> PoolDictionary;
     public List<Pool> Pools;
     private navAgent agent;
     #region SingeltonInAwake
     public static ObjectPool Instance;
+    private WaveSpawner waveSpawner;
+
 
     private void Awake()
     {
@@ -29,7 +35,10 @@ public class ObjectPool : MonoBehaviour
         {
             Instance = this;
         }
-       
+
+
+        waveSpawner = GetComponent<WaveSpawner>();
+
     }
     #endregion
 
@@ -74,11 +83,16 @@ public class ObjectPool : MonoBehaviour
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.SetActive(true);
         Debug.Log("ObjectPool.cs -> spawnFromPool");
+        Debug.Log(WaveSpawner.EnemiesAlive.Count);
+
+        WaveSpawner.EnemiesAlive.Add(objectToSpawn);
+
+        Debug.Log(WaveSpawner.EnemiesAlive.Count);
 
         return objectToSpawn;
     }
 
-    public void EnQueueInPool(string poolTag, GameObject poolThis)
+    public void EnQueueInPool(string poolTag, GameObject objectToPool)
     {
 
         if (!PoolDictionary.ContainsKey(poolTag))
@@ -88,9 +102,19 @@ public class ObjectPool : MonoBehaviour
             return;
         }
         //Debug.Log("Pooled ->" + poolTag);
+        objectToPool.transform.position = poolLocation.position;
 
-        PoolDictionary[poolTag].Enqueue(poolThis);
-        poolThis.SetActive(false);
+        PoolDictionary[poolTag].Enqueue(objectToPool);
+
+
+        Debug.Log(WaveSpawner.EnemiesAlive.Count);
+        WaveSpawner.EnemiesAlive.Remove(objectToPool);
+        Debug.Log(WaveSpawner.EnemiesAlive.Count);
+
+
+
+
+        objectToPool.SetActive(false);
 
 
 
