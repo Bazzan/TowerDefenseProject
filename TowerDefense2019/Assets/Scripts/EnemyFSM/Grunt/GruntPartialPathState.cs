@@ -22,7 +22,7 @@ public class GruntPartialPathState : GruntBaseState
 
         if(timeToCheckPath <= 0)
         {
-            Owner.Agent.SetDestination(Owner.EndDestination.position);
+            Owner.Agent.SetPath(NavMeshManager.navMeshManagerInstance.GetPath());
             timeToCheckPath = 1f;
         }
         timeToCheckPath -= Time.deltaTime;

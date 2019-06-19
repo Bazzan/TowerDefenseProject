@@ -32,9 +32,9 @@ public class GruntBaseState : EnemyState
         {
             Owner.Transition<GruntSpawnState>();
         }
-        if (Owner.Agent.path.status == UnityEngine.AI.NavMeshPathStatus.PathPartial)
+        if (Owner.Agent.path.status == NavMeshPathStatus.PathPartial)
         {
-
+            Owner.Transition<GruntPartialPathState>();
         }
     }
 
