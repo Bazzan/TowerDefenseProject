@@ -8,7 +8,7 @@ public class WaveSpawner : MonoBehaviour
     public static List<GameObject> EnemiesAlive;
 
 
-    [SerializeField] private Transform enemyPrefab;
+    //[SerializeField] private Transform enemyPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private Text waveCountdownTimer;
