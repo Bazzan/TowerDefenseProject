@@ -19,7 +19,7 @@ public class ObjectPool : MonoBehaviour
 
     public Dictionary<string, Queue<GameObject>> PoolDictionary;
     public List<Pool> Pools;
-    private navAgent agent;
+    //private navAgent agent;
     #region SingeltonInAwake
     public static ObjectPool Instance;
     private WaveSpawner waveSpawner;
