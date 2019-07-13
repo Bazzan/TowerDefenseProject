@@ -7,6 +7,10 @@ public class BombTower : Tower
     [SerializeField] private GameObject bombPrefab;
 
 
+    [Header("Part To Rotate")]
+    [SerializeField] private float turnSpeed = 1f;
+    [SerializeField] private Transform partToRotate;
+
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0, 0.5f);
@@ -23,7 +27,8 @@ public class BombTower : Tower
             if (InRange())
             {
                 CancelInvoke();
-                if(FireCountdown <= 0)
+                LockOnTarget();
+                if (FireCountdown <= 0)
                 {
                     Shoot();
                     FireCountdown = FireRate;
@@ -50,6 +55,15 @@ public class BombTower : Tower
             bullet.Seek(Target);
         }
 
+
+    }
+
+
+    private void LockOnTarget()
+    {
+        Vector3 dirToPlayer = (partToRotate.transform.position -Target.transform.position ).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dirToPlayer.x, 0f, dirToPlayer.z));
+        partToRotate.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
 
     }
 

@@ -5,10 +5,14 @@ public class BuildManager : MonoBehaviour {
     public static BuildManager Instance;
     Node node;
 
-    [SerializeField] private GameObject buildEffect;
+    [SerializeField] public GameObject buildEffect;
     //public GameObject buildFeedBack;
 
     private TurretBluePrint turretToBuild;
+
+    private Node selectedNode;
+    [SerializeField] private NodeUI nodeUI;
+
 
     private void Awake()
     {
@@ -24,36 +28,41 @@ public class BuildManager : MonoBehaviour {
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.Cost; } }
 
-  
-    public void BuildTurretOn(Node node)
+
+    public void SelectNode(Node node)
     {
-        if (PlayerStats.Money < turretToBuild.Cost)
+
+        if(selectedNode != null)
         {
-            //Debug.Log("Check wallet you bum!");
+            DeselectNode();
             return;
         }
-        PlayerStats.Money -= turretToBuild.Cost;
 
-        GameObject turret = (GameObject)Instantiate(turretToBuild.Prefab, node.GetBuildPosition(), Quaternion.identity);
-        node.Turret = turret;
-
-        GameObject effect = (GameObject)Instantiate(buildEffect, node.GetBuildPosition(), Quaternion.identity);
-        Destroy(effect, 5f);
-
-        //Debug.Log("Turret build! Denero left:" + PlayerStats.Money);
+        selectedNode = node;
         turretToBuild = null;
 
-
-        //FireEvent?
-
-
+        nodeUI.SetTarget(node);
     }
+
+    public void DeselectNode()
+    {
+        selectedNode = null;
+        nodeUI.HideNodeUI();
+    }
+
 
     public void SelectTurretToBuild (TurretBluePrint turret)
     {
         turretToBuild = turret;
+
+        DeselectNode();
     }
 
+
+    public TurretBluePrint getTurretToBuild()
+    {
+        return turretToBuild;
+    }
 
 
 }

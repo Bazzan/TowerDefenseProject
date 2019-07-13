@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class EnemyAttributes : MonoBehaviour
 {
+
+    private Grunt grunt;
+
     [Header("Attributes")]
-    [SerializeField] public float speed = 10f;
+
+    private float MaxSpeed;
     [SerializeField] public float health = 100;
     [SerializeField] public int value = 50;
+
 
     [Header("VFX")]
     [SerializeField] public GameObject deathEffect;
@@ -17,8 +22,18 @@ public class EnemyAttributes : MonoBehaviour
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
+        grunt = GetComponent<Grunt>();
+        MaxSpeed = grunt.Agent.speed;
     }
 
+    public void SlowMovment(float slowPercent)
+    {
+        grunt.Agent.speed = MaxSpeed * (slowPercent);
+    }
+    public void SetStartSpeed()
+    {
+        grunt.Agent.speed = MaxSpeed;
+    }
 
     public void DmgCastel()
     {
@@ -49,4 +64,6 @@ public class EnemyAttributes : MonoBehaviour
 
         gameObject.SetActive(false);
     }
+
+
 }

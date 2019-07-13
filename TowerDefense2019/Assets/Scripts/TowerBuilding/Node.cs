@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Node : MonoBehaviour {
     BuildManager buildManager;
+
     [SerializeField] private Color notEnoughMoney;
     [SerializeField] private Color hoverColor;
 
@@ -13,12 +14,21 @@ public class Node : MonoBehaviour {
     
     [SerializeField] private Vector3 positionOffSett;
 
-    [Header ("Optional")]
+
+    [HideInInspector]
+    public TurretBluePrint turretBluePrint;
+    [HideInInspector]
     public GameObject Turret;
+    [HideInInspector]
+    public bool isUpgraded = false;
+
+
+    [SerializeField] private GameObject nodeUI;
 
     private Renderer rend;
     private Color startColor;
     //private GameObject buildFeedback;
+   
 
     void Start()
     {
@@ -39,8 +49,24 @@ public class Node : MonoBehaviour {
 
     void OnMouseDown()
     {
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
+            return;
+        }
+
+        BuildManager.Instance.DeselectNode();
+
+        // gör så att du kan gömma nodeui genom att klicka på andra torn
+        if (nodeUI.activeInHierarchy) // TODO: make so the nodeUi is hidden when you click anything else
+        {
+            buildManager.DeselectNode();
+            return;
+        }
+
+        if (Turret != null)
+        {
+            buildManager.SelectNode(this);
             return;
         }
 
@@ -48,19 +74,13 @@ public class Node : MonoBehaviour {
         {
             return;
         }
+        BuildTurret(buildManager.getTurretToBuild());
 
-
-        if (Turret != null)
-        {
-            Debug.Log("Already a turret there");
-            return;
-        }
-
-        buildManager.BuildTurretOn(this);
+        //buildManager.BuildTurretOn(this);
         NavMeshManager.navMeshManagerInstance.CalcPath();
     }
 
-    void OnMouseEnter()
+    void OnMouseEnter() // TODO: make a child that shows if you can build or not
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -91,4 +111,68 @@ public class Node : MonoBehaviour {
     {
         rend.material.color = startColor;
     }
+
+
+    void BuildTurret (TurretBluePrint bluePrint)
+    {
+        if (PlayerStats.Money < bluePrint.Cost)
+        {
+
+            return;
+        }
+        PlayerStats.Money -= bluePrint.Cost;
+
+        GameObject instanceTurret = Instantiate(bluePrint.Prefab, GetBuildPosition(), Quaternion.identity);
+        Turret = instanceTurret;
+
+        turretBluePrint = bluePrint;
+
+        GameObject effect = Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
+
+        bluePrint = null;
+
+
+        //FireEvent?
+    }
+
+    //fixa kompilerings fel innan du fortsätter
+    public void UpgradeTower() //uppgraderar tornet -> förstör det gamla skapar ett nytt och drar pengar
+    {
+        if (PlayerStats.Money < turretBluePrint.UpgradeCost)
+        {
+            Debug.Log("not enough money to upgrade tower");
+            return;
+        }
+        PlayerStats.Money -= turretBluePrint.UpgradeCost;
+        Destroy(Turret); 
+
+        GameObject instanceTurret = Instantiate(turretBluePrint.UpgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        Turret = instanceTurret;
+
+
+        GameObject effect = Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity); //upgrade effekt?
+        Destroy(effect, 5f);
+
+        isUpgraded = true;
+
+
+        Debug.Log("turret Upgraded");
+
+        //FireEvent?
+    }
+
+    public void SellTurret() // TODO: skapa ett partikel system som ser ut som att tornet går i bitar och hamnar på marken
+    {
+        PlayerStats.Money += turretBluePrint.GetSellAmount();
+        Destroy(Turret);
+        turretBluePrint = null;
+
+
+
+        GameObject effect = Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity); //upgrade effekt?
+        Destroy(effect, 5f);
+    }
+
+
 }

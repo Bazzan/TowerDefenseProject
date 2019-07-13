@@ -49,6 +49,8 @@ MonoBehaviour:
   EnemyTag: Enemy
   FirePoint: {fileID: 6959173326158226904}
   bombPrefab: {fileID: 1130792585505212, guid: 7c26dd1547c838b44905cb3156cbb9e7, type: 3}
+  turnSpeed: 100
+  partToRotate: {fileID: 8183851620653028880}
 --- !u!1 &1784689096087078919
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +151,26 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 696aa7fc5e1d8b54992c01cb11f14894,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531144289327318754, guid: 696aa7fc5e1d8b54992c01cb11f14894,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531144289327318754, guid: 696aa7fc5e1d8b54992c01cb11f14894,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531144289327318754, guid: 696aa7fc5e1d8b54992c01cb11f14894,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6531144289327318754, guid: 696aa7fc5e1d8b54992c01cb11f14894,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

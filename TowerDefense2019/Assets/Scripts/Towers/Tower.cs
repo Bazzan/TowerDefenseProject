@@ -6,6 +6,7 @@ public class Tower : MonoBehaviour
 {
     protected Transform Target;
     protected bool RepeatingUpdateTarget = false;
+    protected EnemyAttributes enemyAttributes;
 
     [Header("General")]
     [SerializeField] protected float Range = 15f;
@@ -61,6 +62,7 @@ public class Tower : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= Range)
         {
             Target = nearestEnemy.transform;
+            enemyAttributes = Target.GetComponent<EnemyAttributes>();
         }
         //else
         //{

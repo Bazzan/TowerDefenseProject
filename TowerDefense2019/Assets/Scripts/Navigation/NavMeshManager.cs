@@ -48,7 +48,7 @@ public class NavMeshManager : MonoBehaviour
         linerend.positionCount = path.corners.Length;
         linerend.SetPositions(path.corners);
         linerend.enabled = true;
-        Debug.Log(path.corners.Length);
+        //Debug.Log(path.corners.Length);
 
         CalcPath();
 

@@ -6,7 +6,8 @@ public class MagicTower : Tower
 {
 
     [SerializeField] private LineRenderer lineRenderer;
-
+    [SerializeField] private float damageOverTime = 30f;
+    [SerializeField] private float slowPercent = 0.5f;
 
     private void Start()
     {
@@ -16,6 +17,8 @@ public class MagicTower : Tower
 
     void Update()
     {
+
+
 
         if(Target == null && !RepeatingUpdateTarget)
         {
@@ -33,10 +36,19 @@ public class MagicTower : Tower
                 CancelInvoke();
                 RepeatingUpdateTarget = false;
                 Laser();
+
+                DoDamage();
+                SlowEnemy();
+
             }
             else
             {
-                Target = null;
+                if(Target != null)
+                {
+                    enemyAttributes.SetStartSpeed();
+                    Target = null;
+                }
+                
             }
         }
 
@@ -46,6 +58,15 @@ public class MagicTower : Tower
 
     }
 
+    private void SlowEnemy()
+    {
+        enemyAttributes.SlowMovment(slowPercent);
+    }
+
+    private void DoDamage()
+    {
+        enemyAttributes.EnemyTakeDamage(damageOverTime * Time.deltaTime);
+    }
 
     protected void Laser()
     {

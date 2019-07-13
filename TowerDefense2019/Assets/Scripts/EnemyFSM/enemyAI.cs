@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class enemyAI : MonoBehaviour {
 
     [Header("Attributes")]
-    [SerializeField] private float speed = 10f;
+    //[SerializeField] private float speed = 10f;
     //private int wavePointIndex = 0;
     [SerializeField] private int health = 100;
     [SerializeField] private int value = 50;

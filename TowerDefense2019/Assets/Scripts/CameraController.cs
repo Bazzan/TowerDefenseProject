@@ -5,13 +5,19 @@ public class CameraController : MonoBehaviour {
     private bool doMovment = true;
 
     [SerializeField] private float panSpeed = 30f;
-    [SerializeField] private float panBorderThickness = 10f;
+    //[SerializeField] private float panBorderThickness = 10f;
     [SerializeField] private float scrollSpeed = 5f;
     [SerializeField] private float minY = 10f;
     [SerializeField] private float maxY = 80f;
 
 
     void Update () {
+
+        if (GameManager.GameIsOver)
+        {
+            this.enabled = false;
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

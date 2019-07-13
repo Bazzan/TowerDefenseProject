@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Sceen/NeverEnd 2.unity
+    guid: fd27173efd3c7ae4cb0432a824c30f82
   m_configObjects: {}

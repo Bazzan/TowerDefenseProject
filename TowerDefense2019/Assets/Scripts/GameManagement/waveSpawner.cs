@@ -15,6 +15,7 @@ public class WaveSpawner : MonoBehaviour
 
     private int waveIndex = 0;
     private float countDown = 2f;
+    private bool isSpawning = false; 
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class WaveSpawner : MonoBehaviour
 
     void Update ()
     {
-		if(countDown <= 0)
+		if(countDown <= 0 && !isSpawning)
         {
             StartCoroutine(SpawnWave());
             countDown = timeBetweenWaves;
@@ -39,13 +40,19 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave ()
     {
+        isSpawning = true;
+        Debug.Log("New wave inc");
+
         waveIndex++;
+        PlayerStats.CurrentWave++;
+
         for (int i = 0; i < waveIndex; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
-        Debug.Log("New wave inc");
+        isSpawning = false;
+
     }
 
     void SpawnEnemy()

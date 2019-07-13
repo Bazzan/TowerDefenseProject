@@ -64,7 +64,7 @@ MonoBehaviour:
   Range: 15
   FireRate: 1
   EnemyTag: Enemy
-  FirePoint: {fileID: 0}
+  FirePoint: {fileID: 714181086466564473}
   bulletPrefab: {fileID: 1240272752180504, guid: 5cf0168fcd046764c93289833c6e039a,
     type: 3}
 --- !u!1 &6410092816909697529
