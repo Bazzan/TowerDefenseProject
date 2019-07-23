@@ -26,6 +26,12 @@ public class EnemyAttributes : MonoBehaviour
         MaxSpeed = grunt.Agent.speed;
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+
     public void SlowMovment(float slowPercent)
     {
         grunt.Agent.speed = MaxSpeed * (slowPercent);

@@ -4,8 +4,9 @@ using UnityEngine;
 public class Shop : MonoBehaviour {
 
     [SerializeField] private TurretBluePrint arrowTower;
-    [SerializeField] private TurretBluePrint missileLauncher;
-    [SerializeField] private TurretBluePrint magicLaserB;
+    [SerializeField] private TurretBluePrint bombTower;
+    [SerializeField] private TurretBluePrint magicLaser;
+    [SerializeField] private TurretBluePrint aoETurret;
 
     private BuildManager buildmanager;
 
@@ -26,12 +27,19 @@ public class Shop : MonoBehaviour {
     public void SelectMissileLauncher()
     {
         //Debug.Log("Missile Launcher Selected");
-        buildmanager.SelectTurretToBuild(missileLauncher);
+        buildmanager.SelectTurretToBuild(bombTower);
     }
 
     public void SelectMagicLaser()
     {
         //Debug.Log("Magic Laser Selected");
-        buildmanager.SelectTurretToBuild(magicLaserB);
+        buildmanager.SelectTurretToBuild(magicLaser);
     }
+
+    public void SelectAoETower()
+    {
+        buildmanager.SelectTurretToBuild(aoETurret);
+    }
+
+
 }
