@@ -19,6 +19,10 @@ public class EnemyAttributes : MonoBehaviour
 
     ObjectPool objectPool;
 
+    
+
+
+
     private void Awake()
     {
         objectPool = ObjectPool.Instance;
@@ -26,12 +30,8 @@ public class EnemyAttributes : MonoBehaviour
         MaxSpeed = grunt.Agent.speed;
     }
 
-    private void OnEnable()
-    {
-        
-    }
 
-
+    #region slowMovement
     public void SlowMovment(float slowPercent)
     {
         grunt.Agent.speed = MaxSpeed * (slowPercent);
@@ -40,15 +40,8 @@ public class EnemyAttributes : MonoBehaviour
     {
         grunt.Agent.speed = MaxSpeed;
     }
+    #endregion
 
-    public void DmgCastel()
-    {
-        PlayerStats.Lives--;
-
-        ObjectPool.Instance.EnQueueInPool("Grunt", gameObject);
-        //Debug.Log("DMGCastel.cs ");
-        //objectPool.EnQueueInPool("Grunt", gameObject);
-    }
 
     public void EnemyTakeDamage(float damage)
     {
@@ -71,5 +64,12 @@ public class EnemyAttributes : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    //public void DmgCastel()
+    //{
+    //    PlayerStats.Lives--;
 
+    //    ObjectPool.Instance.EnQueueInPool("Grunt", gameObject);
+    //Debug.Log("DMGCastel.cs ");
+    //objectPool.EnQueueInPool("Grunt", gameObject);
+    //}
 }

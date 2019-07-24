@@ -20,7 +20,8 @@ public class Node : MonoBehaviour {
     [HideInInspector]
     public GameObject Turret;
     [HideInInspector]
-    public bool isUpgraded = false;
+    public bool isUpgradedToLVL2 = false;
+    public bool isUpgradedToLVL3 = false;
 
 
     [SerializeField] private GameObject nodeUI;
@@ -57,7 +58,6 @@ public class Node : MonoBehaviour {
 
         BuildManager.Instance.DeselectNode();
 
-        // gör så att du kan gömma nodeui genom att klicka på andra torn
         if (nodeUI.activeInHierarchy) // TODO: make so the nodeUi is hidden when you click anything else
         {
             buildManager.DeselectNode();
@@ -77,14 +77,14 @@ public class Node : MonoBehaviour {
         BuildTurret(buildManager.getTurretToBuild());
 
         //buildManager.BuildTurretOn(this);
-        NavMeshManager.navMeshManagerInstance.CalcPath();
+        //NavMeshManager.navMeshManagerInstance.CalcPath();
     }
 
     void OnMouseEnter() // TODO: make a child that shows if you can build or not
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
-        return;
+            return;
         }
 
         if (!buildManager.CanBuild)
@@ -120,7 +120,7 @@ public class Node : MonoBehaviour {
 
             return;
         }
-        PlayerStats.Money -= bluePrint.Cost;
+        PlayerStats.Money -= bluePrint.GetCost();
 
         GameObject instanceTurret = Instantiate(bluePrint.Prefab, GetBuildPosition(), Quaternion.identity);
         Turret = instanceTurret;
@@ -136,7 +136,6 @@ public class Node : MonoBehaviour {
         //FireEvent?
     }
 
-    //fixa kompilerings fel innan du fortsätter
     public void UpgradeTower() //uppgraderar tornet -> förstör det gamla skapar ett nytt och drar pengar
     {
         if (PlayerStats.Money < turretBluePrint.UpgradeCost)
@@ -144,22 +143,61 @@ public class Node : MonoBehaviour {
             Debug.Log("not enough money to upgrade tower");
             return;
         }
-        PlayerStats.Money -= turretBluePrint.UpgradeCost;
-        Destroy(Turret); 
 
-        GameObject instanceTurret = Instantiate(turretBluePrint.UpgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        if (!isUpgradedToLVL2)
+        {
+            
+            UpgradeToLVLTwo();
+            return;
+
+
+        }
+        else if(isUpgradedToLVL2 && !isUpgradedToLVL3)
+        {
+            UpgradeToLVLThree();
+            return;
+
+        }
+
+
+
+
+        Debug.Log("turret Upgraded");
+
+        //FireEvent?
+    }
+
+    public void UpgradeToLVLTwo()
+    {
+
+        PlayerStats.Money -= turretBluePrint.GetUpgradeCost();
+
+        Destroy(Turret);
+        GameObject instanceTurret = Instantiate(turretBluePrint.FirstUpgradedPrefab, GetBuildPosition(), Quaternion.identity);
         Turret = instanceTurret;
 
 
         GameObject effect = Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity); //upgrade effekt?
         Destroy(effect, 5f);
 
-        isUpgraded = true;
+        isUpgradedToLVL2 = true;
+
+    }
+    public void UpgradeToLVLThree()
+    {
+
+        PlayerStats.Money -= turretBluePrint.GetSecondUpgradeCost();
+
+        Destroy(Turret);
+
+        GameObject instanceTurret = Instantiate(turretBluePrint.SecondUpgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        Turret = instanceTurret;
 
 
-        Debug.Log("turret Upgraded");
+        GameObject effect = Instantiate(buildManager.buildEffect, GetBuildPosition(), Quaternion.identity); //upgrade effekt?
+        Destroy(effect, 5f);
 
-        //FireEvent?
+        isUpgradedToLVL3 = true;
     }
 
     public void SellTurret() // TODO: skapa ett partikel system som ser ut som att tornet går i bitar och hamnar på marken

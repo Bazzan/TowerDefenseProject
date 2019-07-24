@@ -61,8 +61,8 @@ public class BombTower : Tower
 
     private void LockOnTarget()
     {
-        Vector3 dirToPlayer = (partToRotate.transform.position -Target.transform.position ).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dirToPlayer.x, 0f, dirToPlayer.z));
+        Vector3 dirToTarget = (partToRotate.transform.position -Target.transform.position ).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dirToTarget.x, 0f, dirToTarget.z));
         partToRotate.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
 
     }

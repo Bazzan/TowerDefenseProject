@@ -10,6 +10,16 @@ public class NodeUI : MonoBehaviour
     [SerializeField] private Text upgradeCost;
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Text sellAmount;
+    [SerializeField] private Transform cameraToRotateTo;
+
+    private Vector3 dirToCamera;
+    private void FixedUpdate()
+    {
+        RotateToCamera();
+    }
+
+
+
 
     public void SetTarget(Node nodeTarget)
     {
@@ -18,9 +28,9 @@ public class NodeUI : MonoBehaviour
         transform.position = target.GetBuildPosition();
 
 
-        if (!target.isUpgraded)
+        if (!target.isUpgradedToLVL3)
         {
-            upgradeCost.text = "$" + target.turretBluePrint.UpgradeCost;
+            upgradeCost.text = "$" + target.turretBluePrint.GetUpgradeCost();
             upgradeButton.interactable = true;
         }
         else
@@ -60,5 +70,13 @@ public class NodeUI : MonoBehaviour
         target.SellTurret();
         BuildManager.Instance.DeselectNode();
     }
+
+    private void RotateToCamera()//rotates the ui against the camera
+    {
+        dirToCamera = (transform.position - cameraToRotateTo.position).normalized;
+        Quaternion rotationToCamera = Quaternion.LookRotation(new Vector3(dirToCamera.x, dirToCamera.y, dirToCamera.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationToCamera, 0.5f);
+    }
+
 
 }

@@ -30,7 +30,7 @@ public class Grunt : EnemyStateMachine
         LineRend = GetComponent<LineRenderer>();
 
         base.Awake();
-        Debug.Log("Grunt.cs " + currentState.ToString());
+        //Debug.Log("Grunt.cs " + currentState.ToString());
 
     }
 
