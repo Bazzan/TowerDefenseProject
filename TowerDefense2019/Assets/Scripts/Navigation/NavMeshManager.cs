@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-//[RequireComponent(typeof(NavMeshAgent))]
 public class NavMeshManager : MonoBehaviour
 {
     [SerializeField] private Transform castle;
@@ -17,14 +16,18 @@ public class NavMeshManager : MonoBehaviour
 
     public static NavMeshManager navMeshManagerInstance;
 
+
+
+
+
+
     private void Awake()
     {
-
-
         agent = GetComponent<NavMeshAgent>();
         path = new NavMeshPath();
         linerend = GetComponent<LineRenderer>();
-
+       
+        #region Singelton
         if (navMeshManagerInstance != null)
         {
             Debug.Log("navmeshmanager.cs signelton not working");
@@ -34,7 +37,7 @@ public class NavMeshManager : MonoBehaviour
         {
             navMeshManagerInstance = this;
         }
-
+        #endregion
 
     }
     private void Start()
@@ -53,7 +56,11 @@ public class NavMeshManager : MonoBehaviour
         CalcPath();
 
 
-
+        if(path.status == NavMeshPathStatus.PathPartial && !PathIsBlockedListener.PathClearerIsFired)
+        {
+            PathBlockedEvent.PathIsBlockedEvent();
+            PathIsBlockedListener.PathClearerIsFired = true;
+        }
     }
 
 

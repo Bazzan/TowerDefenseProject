@@ -12,7 +12,7 @@ public class GruntPartialPathState : GruntBaseState
 
     public override void Enter()
     {
-        Debug.Log(" GruntPartialPath.cs -> enter");
+        //Debug.Log(" GruntPartialPath.cs -> enter");
     }
 
 
@@ -29,7 +29,10 @@ public class GruntPartialPathState : GruntBaseState
 
         if(Owner.Agent.pathStatus == NavMeshPathStatus.PathPartial)
         {
-            Owner.Agent.isStopped = true;
+            //Owner.Agent.isStopped = true;
+
+            //Owner.Agent.
+
         }
 
 

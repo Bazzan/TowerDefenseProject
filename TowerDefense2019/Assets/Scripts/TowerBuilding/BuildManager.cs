@@ -2,6 +2,9 @@
 
 public class BuildManager : MonoBehaviour {
 
+
+    public static GameObject LatestTowerBuilt;
+
     public static BuildManager Instance;
     Node node;
 

@@ -94,4 +94,4 @@ MonoBehaviour:
     type: 3}
   explosionRadius: 0
   bulletSpeed: 70
-  damage: 50
+  damage: 0
