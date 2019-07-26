@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2302990122949495896}
   - component: {fileID: 7711342097483813412}
+  - component: {fileID: -821187627782982511}
   - component: {fileID: 5703685681601829848}
   m_Layer: 0
   m_Name: BombTowerLvL3
@@ -75,13 +76,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ef84782edc4c44fb42d10963c252be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 15
+  Range: 20
   FireRate: 1.5
   EnemyTag: Enemy
   FirePoint: {fileID: 8867786303550858505}
   bombPrefab: {fileID: 1130792585505212, guid: 7c26dd1547c838b44905cb3156cbb9e7, type: 3}
   turnSpeed: 100
   partToRotate: {fileID: 1714877610777066232}
+--- !u!65 &-821187627782982511
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652091649177147380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 5}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!208 &5703685681601829848
 NavMeshObstacle:
   m_ObjectHideFlags: 0

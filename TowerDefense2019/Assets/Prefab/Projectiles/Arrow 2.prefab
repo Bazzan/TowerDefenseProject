@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23988523425303104}
   - component: {fileID: 114352885024257702}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: Arrow 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,4 +94,4 @@ MonoBehaviour:
     type: 3}
   explosionRadius: 0
   bulletSpeed: 70
-  damage: 10
+  damage: 25

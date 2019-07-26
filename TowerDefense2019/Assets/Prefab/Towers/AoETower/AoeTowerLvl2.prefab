@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1339185865991526038}
   - component: {fileID: 1339185865991526034}
+  - component: {fileID: 4196843936973397006}
   - component: {fileID: 1339185865991526039}
   - component: {fileID: 3369739363256441072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AoeTowerLvl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +50,20 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  damageOverTime: 20
+  damageOverTime: 10
+--- !u!65 &4196843936973397006
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339185865991526041}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 5}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!95 &1339185865991526039
 Animator:
   serializedVersion: 3
@@ -96,6 +110,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlameThrowerPFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 285857796252036752, guid: b935941aa206c6d48b90029ee992e6ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 285857796252036753, guid: b935941aa206c6d48b90029ee992e6ce,
         type: 3}
@@ -165,6 +184,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AoETowerLvL2
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dd1bba748aa0208419c566e9032555ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -2801261897168740559, guid: dd1bba748aa0208419c566e9032555ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4425609515867240179, guid: dd1bba748aa0208419c566e9032555ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745788036908658983, guid: dd1bba748aa0208419c566e9032555ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -2580401976822039993, guid: dd1bba748aa0208419c566e9032555ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dd1bba748aa0208419c566e9032555ae,
         type: 3}

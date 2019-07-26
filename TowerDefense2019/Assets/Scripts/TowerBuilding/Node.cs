@@ -183,6 +183,8 @@ public class Node : MonoBehaviour {
         Destroy(effect, 5f);
 
         isUpgradedToLVL2 = true;
+        BuildManager.LatestTowerBuilt = instanceTurret;
+
 
     }
     public void UpgradeToLVLThree()
@@ -200,6 +202,8 @@ public class Node : MonoBehaviour {
         Destroy(effect, 5f);
 
         isUpgradedToLVL3 = true;
+        BuildManager.LatestTowerBuilt = instanceTurret;
+
     }
 
     public void SellTurret() // TODO: skapa ett partikel system som ser ut som att tornet går i bitar och hamnar på marken

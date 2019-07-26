@@ -13,6 +13,8 @@ public class PathClearerEnemy : MonoBehaviour
     //private LineRenderer linerend;
     public Vector3 warpTo;
 
+    private Vector3 colliderOffset = new Vector3(0, -2.6f , 0);
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -32,7 +34,7 @@ public class PathClearerEnemy : MonoBehaviour
         //linerend.positionCount = agent.path.corners.Length;
         //linerend.SetPositions(agent.path.corners);
         //linerend.enabled = true;
-
+        
         if (tower != null)
         {
 
@@ -46,14 +48,19 @@ public class PathClearerEnemy : MonoBehaviour
 
             }
         }
-        
+        else
+        {
+            tower = BuildManager.LatestTowerBuilt;
+
+        }
+
     }
 
 
     private void DestroyTowers()
     {
         //towerColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale * 2.5f, Quaternion.identity, towerMask);
-        towerColliders = Physics.OverlapSphere(gameObject.transform.position, 2.5f, towerMask);
+        towerColliders = Physics.OverlapSphere(gameObject.transform.position + colliderOffset, 2.5f, towerMask);
 
         Debug.Log(towerColliders.Length);
         foreach (Collider towerCollider in towerColliders)

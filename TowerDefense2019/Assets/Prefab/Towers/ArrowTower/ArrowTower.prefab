@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2031057667567320636}
   - component: {fileID: 2806591910246956341}
-  - component: {fileID: 7695535584851374838}
   - component: {fileID: -6011046520167768429}
+  - component: {fileID: 7695535584851374838}
   m_Layer: 9
   m_Name: ArrowTower
   m_TagString: Untagged
@@ -52,6 +52,19 @@ MonoBehaviour:
   FirePoint: {fileID: 3013244851983598580}
   bulletPrefab: {fileID: 1240272752180504, guid: 5cf0168fcd046764c93289833c6e039a,
     type: 3}
+--- !u!65 &-6011046520167768429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031057667567320639}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 5}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!208 &7695535584851374838
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -68,19 +81,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.25, z: 0}
   m_TimeToStationary: 0.5
---- !u!65 &-6011046520167768429
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031057667567320639}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5016914484737940535
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4592921002908234}
   - component: {fileID: 3019227300849843155}
+  - component: {fileID: 4734998748511019283}
   - component: {fileID: 1719543298}
   m_Layer: 0
   m_Name: BombTowerLvL1
@@ -52,6 +53,19 @@ MonoBehaviour:
   bombPrefab: {fileID: 1130792585505212, guid: 7c26dd1547c838b44905cb3156cbb9e7, type: 3}
   turnSpeed: 100
   partToRotate: {fileID: 8183851620653028880}
+--- !u!65 &4734998748511019283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727466082427040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1, z: 5}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!208 &1719543298
 NavMeshObstacle:
   m_ObjectHideFlags: 0
