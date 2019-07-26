@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8867786303550858505}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7711342097483813412}
   - component: {fileID: -821187627782982511}
   - component: {fileID: 5703685681601829848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BombTowerLvL3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +123,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BombTowerLevel3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8c333dfb8d94932418709e0470c0f441,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133913965574556032, guid: 8c333dfb8d94932418709e0470c0f441,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -1487614274590306928, guid: 8c333dfb8d94932418709e0470c0f441,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8c333dfb8d94932418709e0470c0f441,
         type: 3}

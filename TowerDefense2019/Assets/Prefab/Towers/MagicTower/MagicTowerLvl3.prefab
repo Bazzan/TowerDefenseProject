@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8618031683203090212}
   - component: {fileID: 2932002617052599532}
   - component: {fileID: 2642591189389151198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MagicTowerLvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,6 +198,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MagicTowerLevel3
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d6c38398af4c4844781de664366579bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133913965574556032, guid: d6c38398af4c4844781de664366579bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750205787798303951, guid: d6c38398af4c4844781de664366579bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -2580401976822039993, guid: d6c38398af4c4844781de664366579bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -2285437913818455865, guid: d6c38398af4c4844781de664366579bc,
         type: 3}

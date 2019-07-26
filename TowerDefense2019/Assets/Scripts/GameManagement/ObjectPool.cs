@@ -57,12 +57,13 @@ public class ObjectPool : MonoBehaviour
                 GameObject poolObject = Instantiate(pool.PoolPrefab);
                 poolObject.SetActive(false);
                 queuePool.Enqueue(poolObject);
+                Debug.Log("poolTag -> " + pool.PoolTag + " added");
+
             }
 
             PoolDictionary.Add(pool.PoolTag, queuePool);
-            Debug.Log("poolTag -> " + pool.PoolTag + " added");
         }
-        //Debug.Log("All Pools are instansiated" + PoolDictionary.Count + " " + PoolDictionary.Keys.ToString() );
+        //Debug.Log("All Pools are instansiated" + PoolDictionary.Count + " " + PoolDictionary.Keys.ToString());
     }
 
     public GameObject SpawnFromPool (string poolTag, Vector3 position, Quaternion rotation)
@@ -74,11 +75,9 @@ public class ObjectPool : MonoBehaviour
             Debug.Log("ObjectPool dose not have the Pooltag in the dictionary ->" + poolTag);
             return null;
         }
-        GameObject objectToSpawn = PoolDictionary[poolTag].Dequeue();
-        
 
-        
-       
+        GameObject objectToSpawn = PoolDictionary[poolTag].Dequeue();
+
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.SetActive(true);
@@ -91,6 +90,14 @@ public class ObjectPool : MonoBehaviour
 
         return objectToSpawn;
     }
+
+    private void AddToEmptyQueue(string poolTag)
+    {
+
+    }
+
+
+
 
     public void EnQueueInPool(string poolTag, GameObject objectToPool)
     {
@@ -111,13 +118,12 @@ public class ObjectPool : MonoBehaviour
         WaveSpawner.EnemiesAlive.Remove(objectToPool);
         //Debug.Log(WaveSpawner.EnemiesAlive.Count);
 
-
-
-
         objectToPool.SetActive(false);
 
-
-
     }
+
+
+
+
 
 }
