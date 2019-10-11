@@ -6,9 +6,23 @@ public class ArrowTower : Tower
 {
     [SerializeField] private GameObject bulletPrefab;
 
+    //private Queue<GameObject> arrowQueue;
 
+
+    //private void Awake()
+    //{
+    //    arrowQueue = new Queue<GameObject>();
+    //    for (int i = 0; i < 3; i++)
+    //    {
+    //        GameObject bulletGO = Instantiate(bulletPrefab, transform);
+    //        arrowQueue.Enqueue(bulletGO);
+    //    }
+
+    //}
     private void Start()
     {
+
+
         InvokeRepeating("UpdateTarget", 0, 0.5f);
         RepeatingUpdateTarget = true;
     }
