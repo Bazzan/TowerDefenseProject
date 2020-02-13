@@ -3946,6 +3946,21 @@ PrefabInstance:
       propertyPath: start
       value: 
       objectReference: {fileID: 1815807811}
+    - target: {fileID: 7283462478492495710, guid: 311909078690e1044a7722a991db6160,
+        type: 3}
+      propertyPath: Pools.Array.data[2].PoolTag
+      value: StrongEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7283462478492495710, guid: 311909078690e1044a7722a991db6160,
+        type: 3}
+      propertyPath: Pools.Array.data[1].PoolTag
+      value: FastEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7283462478492495710, guid: 311909078690e1044a7722a991db6160,
+        type: 3}
+      propertyPath: Pools.Array.data[0].PoolSize
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 311909078690e1044a7722a991db6160, type: 3}
 --- !u!1001 &7334621984786258788

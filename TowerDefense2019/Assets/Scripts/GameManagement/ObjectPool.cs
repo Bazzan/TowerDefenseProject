@@ -70,14 +70,12 @@ public class ObjectPool : MonoBehaviour
 
         if (!PoolDictionary.ContainsKey(poolTag))
         {
-
             Debug.Log("ObjectPool dose not have the Pooltag in the dictionary ->" + poolTag);
             return null;
+
         }else if(PoolDictionary[poolTag].Count == 0) //if queue is empty
         {
-
             AddToEmptyQueue(poolTag);
-
         }
 
         GameObject objectToSpawn = PoolDictionary[poolTag].Dequeue();
@@ -99,30 +97,24 @@ public class ObjectPool : MonoBehaviour
 
         if (!PoolDictionary.ContainsKey(poolTag))
         {
-
             Debug.Log("ObjectPool dose not have the Pooltag in the dictionary ->" + poolTag);
             return;
         }
-        //Debug.Log("Pooled ->" + poolTag);
-        objectToPool.transform.position = poolLocation.position;
-
-        PoolDictionary[poolTag].Enqueue(objectToPool);
-
-
-        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
-        WaveSpawner.EnemiesAlive.Remove(objectToPool);
-        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
-
         objectToPool.SetActive(false);
+        objectToPool.transform.position = poolLocation.position;
+        PoolDictionary[poolTag].Enqueue(objectToPool);
+        WaveSpawner.EnemiesAlive.Remove(objectToPool);
+
 
     }
 
 
     private void AddToEmptyQueue(string poolTag)
     {
+        GameObject prefab = GetObjectToInstansiate(poolTag);
         for (int i = 0; i < 10; i++)
         {
-            GameObject poolObject = Instantiate(GetObjectToInstansiate(poolTag));
+            GameObject poolObject = Instantiate(prefab);
             poolObject.SetActive(false);
             PoolDictionary[poolTag].Enqueue(poolObject);
         }
