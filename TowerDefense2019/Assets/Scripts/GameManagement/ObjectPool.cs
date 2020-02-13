@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    [SerializeField] private Transform poolLocation;
+    public Dictionary<string, Queue<GameObject>> PoolDictionary;
+    public List<Pool> Pools;
 
 
-    
     [System.Serializable]
     public class Pool
     {
         public GameObject PoolPrefab;
-        [SerializeField] public string PoolTag = "Grunt";
+        [SerializeField] public string PoolTag;
         public int PoolSize;
     }
 
-    [SerializeField] private Transform poolLocation;
 
-    public Dictionary<string, Queue<GameObject>> PoolDictionary;
-    public List<Pool> Pools;
-    //private navAgent agent;
+        //Singelton to accese the ObjectPool from WaveSpawner.
     #region SingeltonInAwake
     public static ObjectPool Instance;
     private WaveSpawner waveSpawner;
@@ -42,7 +41,8 @@ public class ObjectPool : MonoBehaviour
     }
     #endregion
 
-
+    /*In the Start method we create the ObjectPool by making a Dictionary with a string as key and a Queue as value.
+     I the string is used to acces the Queue of objects you want to spawn or deSpawn. The Queue stores the GameObjects*/ 
     private void Start()
     {
         PoolDictionary = new Dictionary<string, Queue<GameObject>>();
@@ -63,7 +63,6 @@ public class ObjectPool : MonoBehaviour
 
             PoolDictionary.Add(pool.PoolTag, queuePool);
         }
-        //Debug.Log("All Pools are instansiated" + PoolDictionary.Count + " " + PoolDictionary.Keys.ToString());
     }
 
     public GameObject SpawnFromPool (string poolTag, Vector3 position, Quaternion rotation)
@@ -74,27 +73,23 @@ public class ObjectPool : MonoBehaviour
 
             Debug.Log("ObjectPool dose not have the Pooltag in the dictionary ->" + poolTag);
             return null;
+        }else if(PoolDictionary[poolTag].Count == 0) //if queue is empty
+        {
+
+            AddToEmptyQueue(poolTag);
+
         }
 
         GameObject objectToSpawn = PoolDictionary[poolTag].Dequeue();
-
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.SetActive(true);
-        Debug.Log("ObjectPool.cs -> spawnFromPool");
-        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
 
         WaveSpawner.EnemiesAlive.Add(objectToSpawn);
-
-        //Debug.Log(WaveSpawner.EnemiesAlive.Count);
 
         return objectToSpawn;
     }
 
-    private void AddToEmptyQueue(string poolTag)
-    {
-
-    }
 
 
 
@@ -123,7 +118,29 @@ public class ObjectPool : MonoBehaviour
     }
 
 
+    private void AddToEmptyQueue(string poolTag)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject poolObject = Instantiate(GetObjectToInstansiate(poolTag));
+            poolObject.SetActive(false);
+            PoolDictionary[poolTag].Enqueue(poolObject);
+        }
+        Debug.Log("10 new enemies instansiated of " + poolTag);
+    }
+    private GameObject GetObjectToInstansiate(string poolTag)
+    {
+        foreach (Pool pool in Pools)
+        {
+            if (pool.PoolTag.Equals(poolTag))
+            {
+                return pool.PoolPrefab;
+            }
+        }
+        Debug.Log("Could not find the object with PoolTag: " + poolTag);
+        return null;
 
+    }
 
 
 }
