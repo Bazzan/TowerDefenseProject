@@ -57,6 +57,8 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        ObjectPool.Instance.SpawnFromPool("Grunt", spawnPoint.position, spawnPoint.rotation);
+       GameObject enemy = ObjectPool.Instance.SpawnFromPool("Grunt", spawnPoint.position, spawnPoint.rotation);
+       EnemyAttributes enemyAttributes= enemy.GetComponent<EnemyAttributes>();
+        enemyAttributes.health = enemyAttributes.initHealth;
     }
 }

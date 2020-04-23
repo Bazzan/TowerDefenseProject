@@ -5,9 +5,8 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private Transform poolLocation;
-    public Dictionary<string, Queue<GameObject>> PoolDictionary;
-    public List<Pool> Pools;
-
+    private Dictionary<string, Queue<GameObject>> PoolDictionary;
+    [SerializeField] private List<Pool> Pools;
 
     [System.Serializable]
     public class Pool
@@ -17,13 +16,10 @@ public class ObjectPool : MonoBehaviour
         public int PoolSize;
     }
 
-
-        //Singelton to accese the ObjectPool from WaveSpawner.
     #region SingeltonInAwake
     public static ObjectPool Instance;
     private WaveSpawner waveSpawner;
-
-
+    
     private void Awake()
     {
         if(Instance != null)
@@ -41,8 +37,6 @@ public class ObjectPool : MonoBehaviour
     }
     #endregion
 
-    /*In the Start method we create the ObjectPool by making a Dictionary with a string as key and a Queue as value.
-     I the string is used to acces the Queue of objects you want to spawn or deSpawn. The Queue stores the GameObjects*/ 
     private void Start()
     {
         PoolDictionary = new Dictionary<string, Queue<GameObject>>();
@@ -88,10 +82,6 @@ public class ObjectPool : MonoBehaviour
         return objectToSpawn;
     }
 
-
-
-
-
     public void EnQueueInPool(string poolTag, GameObject objectToPool)
     {
 
@@ -108,7 +98,6 @@ public class ObjectPool : MonoBehaviour
 
     }
 
-
     private void AddToEmptyQueue(string poolTag)
     {
         GameObject prefab = GetObjectToInstansiate(poolTag);
@@ -120,6 +109,7 @@ public class ObjectPool : MonoBehaviour
         }
         Debug.Log("10 new enemies instansiated of " + poolTag);
     }
+
     private GameObject GetObjectToInstansiate(string poolTag)
     {
         foreach (Pool pool in Pools)
@@ -136,3 +126,17 @@ public class ObjectPool : MonoBehaviour
 
 
 }
+
+
+
+
+
+
+
+
+
+//Singelton to accese the ObjectPool from WaveSpawner.
+
+
+/*In the Start method we create the ObjectPool by making a Dictionary with a string as key and a Queue as value.
+ I the string is used to acces the Queue of objects you want to spawn or deSpawn. The Queue stores the GameObjects*/

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttributes : MonoBehaviour
 {
-
+    public float initHealth;
     private Grunt grunt;
 
     [Header("Attributes")]
@@ -25,6 +25,7 @@ public class EnemyAttributes : MonoBehaviour
 
     private void Awake()
     {
+        initHealth = health;
         objectPool = ObjectPool.Instance;
         grunt = GetComponent<Grunt>();
         MaxSpeed = grunt.Agent.speed;

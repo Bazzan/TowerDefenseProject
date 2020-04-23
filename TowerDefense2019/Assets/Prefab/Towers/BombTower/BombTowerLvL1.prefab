@@ -46,7 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ef84782edc4c44fb42d10963c252be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowDrawGizmo: 0
   Range: 15
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
   FireRate: 1
   EnemyTag: Enemy
   FirePoint: {fileID: 6959173326158226904}

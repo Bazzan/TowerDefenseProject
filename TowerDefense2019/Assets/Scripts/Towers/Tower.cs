@@ -4,71 +4,61 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    protected Transform Target;
-    protected bool RepeatingUpdateTarget = false;
-    protected EnemyAttributes enemyAttributes;
+    protected Transform Target; //enemy target transform
+    protected bool RepeatingUpdateTarget = false; //safty check for invokeRepeating
+    protected EnemyAttributes enemyAttributes; //class where you can accesse health and other attributes from enemy target
+    protected Collider[] enemiesInRange; //used to store enemies in range
 
-    [Header("General")]
-    [SerializeField] protected float Range = 15f;
-
+    [Header("General")] //attribute for each type of tower to manipulate
+    [SerializeField] protected float Range = 7.5f;
+    [SerializeField] protected LayerMask layerMask;
 
     [Header("Use Bullets (default)")]
     [SerializeField] protected float FireRate = 1f;
     protected float FireCountdown = 0f;
-
-    //[Header("Use Laser")] //brackeys linerenderer i snakevideo
-    //[SerializeField] private bool useLaser = false;
-    //[SerializeField] private LineRenderer lineRenderer;
-
-    //[Header("Setup fields")]
-    //[SerializeField] protected bool hasRotatingPart = false;
-    //[SerializeField] protected float turnSpeed = 10f;
-    //[SerializeField] protected Transform partToRotate;
-
-    [SerializeField] protected string EnemyTag = "Enemy";
-
     [SerializeField] protected Transform FirePoint;
-
-    private WaveSpawner waveSpawner;
-
-    //   void Start ()
-    //   {
-    //       InvokeRepeating("UpdateTarget", 0f, 0.5f);
-    //}
-
-    private void Awake()
-    {
-        waveSpawner = GetComponent<WaveSpawner>();
-    }
 
     protected void UpdateTarget()
     {
-        //GameObject[] enemies = GameObject.FindGameObjectsWithTag(EnemyTag);
-
-
+        Debug.Log("updating targert");
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        Collider nearestEnemy = null;
 
-        foreach (GameObject enemy in WaveSpawner.EnemiesAlive)
+        enemiesInRange = Physics.OverlapSphere(transform.position, Range, layerMask);
+        if (enemiesInRange.Length != 0)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
+            foreach (Collider enemy in enemiesInRange)
             {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
+                //Vector3.Distance(transform.position, enemy.transform.position);
 
-        if (nearestEnemy != null && shortestDistance <= Range)
-        {
+
+                float distanceToEnemy = SqredRange(transform.position, enemy.transform.position);
+
+
+                Debug.Log(distanceToEnemy);
+                if (distanceToEnemy < shortestDistance)
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
+
+
+            }
+
             Target = nearestEnemy.transform;
             enemyAttributes = Target.GetComponent<EnemyAttributes>();
-        }
-        //else
-        //{
-        //    target = null;
-        //}
 
+
+        }
+        else
+        {
+            Debug.Log("list is empty");
+        }
+    }
+
+    private float SqredRange(Vector3 pos1, Vector3 pos2)
+    {
+        return (pos1 - pos2).sqrMagnitude;
     }
 
     protected bool InRange()
@@ -79,64 +69,12 @@ public class Tower : MonoBehaviour
         }
 
         Vector3 dist = Target.position - transform.position;
-        float distSqr = dist.sqrMagnitude;
 
-        return distSqr < Range * Range;
+
+        return dist.sqrMagnitude < Range * Range;
 
 
     }
-
-
-    //void Update () {
-    //	if(target == null)
-    //       {
-    //           if (useLaser)
-    //           {
-    //               if (lineRenderer.enabled)
-    //               {
-    //                   lineRenderer.enabled = false;
-    //               }
-    //           }
-    //           return;
-    //       }
-
-    //       if (hasRotatingPart) for tower with rotating parts
-    //       {
-    //           LockOnTarget();
-    //       }
-
-
-    //       if (useLaser)
-    //       {
-    //           Laser();
-    //       }else
-    //       {
-    //           if (fireCountdown <= 0f)
-    //           {
-    //               Shoot();
-    //               fireCountdown = 1f / fireRate;
-    //           }
-    //       }
-
-
-
-    //       fireCountdown -= Time.deltaTime;
-
-    //}
-
-    //protected void LockOnTarget()
-    //{
-    //    // Target Lock on bby PEWPEW
-    //    Vector3 direction = target.position - transform.position;
-    //    Quaternion lookRotation = Quaternion.LookRotation(direction);
-    //    Vector3 roation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-    //    partToRotate.rotation = Quaternion.Euler(0f, roation.y, 0f);
-    //}
-
-
-
-
-
 
     protected void OnDrawGizmosSelected()
     {
@@ -144,3 +82,16 @@ public class Tower : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, Range);
     }
 }
+
+
+
+
+
+//protected void LockOnTarget()
+//{
+//    // Target Lock on bby PEWPEW
+//    Vector3 direction = target.position - transform.position;
+//    Quaternion lookRotation = Quaternion.LookRotation(direction);
+//    Vector3 roation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+//    partToRotate.rotation = Quaternion.Euler(0f, roation.y, 0f);
+//}
