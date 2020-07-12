@@ -1,7 +1,8 @@
 ﻿using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class Node : MonoBehaviour {
+public class Node : MonoBehaviour
+{
     BuildManager buildManager;
 
     [SerializeField] private Color notEnoughMoney;
@@ -11,7 +12,7 @@ public class Node : MonoBehaviour {
     //public Material buildFalse;
     //public GameObject BuildFeedBack;
 
-    
+
     [SerializeField] private Vector3 positionOffSett;
 
 
@@ -29,7 +30,7 @@ public class Node : MonoBehaviour {
     private Renderer rend;
     private Color startColor;
     //private GameObject buildFeedback;
-   
+
 
     void Start()
     {
@@ -113,7 +114,7 @@ public class Node : MonoBehaviour {
     }
 
 
-    void BuildTurret (TurretBluePrint bluePrint)
+    void BuildTurret(TurretBluePrint bluePrint)
     {
         if (PlayerStats.Money < bluePrint.Cost)
         {
@@ -148,13 +149,13 @@ public class Node : MonoBehaviour {
 
         if (!isUpgradedToLVL2)
         {
-            
+
             UpgradeToLVLTwo();
             return;
 
 
         }
-        else if(isUpgradedToLVL2 && !isUpgradedToLVL3)
+        else if (isUpgradedToLVL2 && !isUpgradedToLVL3)
         {
             UpgradeToLVLThree();
             return;
